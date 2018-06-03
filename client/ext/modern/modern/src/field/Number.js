@@ -45,7 +45,7 @@
  *                 items: [
  *                     {
  *                         xtype: 'numberfield',
- *                         label: 'Salary',
+ *                         label: 'News',
  *                         value: 30000,
  *                         minValue: 25000,
  *                         maxValue: 50000

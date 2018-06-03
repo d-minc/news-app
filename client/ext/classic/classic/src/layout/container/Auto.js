@@ -117,7 +117,7 @@ Ext.define('Ext.layout.container.Auto', {
      *             sortable: true,
      *             dataIndex: 'rating'
      *         },{
-     *             text: 'Salary',
+     *             text: 'News',
      *             width: 125,
      *             sortable: true,
      *             dataIndex: 'news',

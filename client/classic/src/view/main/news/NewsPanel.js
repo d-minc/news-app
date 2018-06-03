@@ -3,6 +3,8 @@ Ext.define('News.view.main.news.NewsPanel', {
     xtype: 'newspanel',
 
     requires: [
+        'News.view.main.news.gridpanel.NewsGridPanel',
+        'News.view.main.news.footer.NewsFooter'
     ],
 
     id: 'newspanel',
@@ -14,6 +16,13 @@ Ext.define('News.view.main.news.NewsPanel', {
     },
 
     items: [
-    ]
+        {
+            xtype: 'newsgridpanel',
+            flex: 3
+        },
+        {
+            xtype: 'newsfooter',
+            flex: 1
+        }]
 
 });

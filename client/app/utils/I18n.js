@@ -21,6 +21,30 @@ Ext.define('News.I18n', {
         this.languageCode = langCode;
     },
 
+    newsgrid: {
+        title: {pl: 'Najnowsze wiadomości'},
+        column: {
+            country: {pl: 'Kraj'},
+            category: {pl: 'Kategoria'},
+            author: {pl: 'Autor'},
+            title: {pl: 'Tytuł'},
+            date: {pl: 'Data'},
+            sourceName: {pl: 'Źródło'},
+            articleUrl: {pl: 'Link'},
+            imageUrl: {pl: ' '},
+            description: {pl: 'Opis'}
+        },
+
+        button: {
+            refresh: {pl: 'Odśwież'}
+        },
+
+        error: {
+            maxRecords: {pl: 'Nie można dodać więcej rekordów'},
+            update: {pl: 'Błąd aktualizacji danych'},
+            timedout: {pl: 'Przekroczono limit czasu żądania'}
+        }
+    },
     app: {
         name: {pl: 'Wiadomości ze świata'},
         about: {pl: 'Dostęp do najnowszych wiadomości z całego świata.'},
