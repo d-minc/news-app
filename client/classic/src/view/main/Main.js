@@ -85,6 +85,7 @@ Ext.define('News.view.main.Main', {
         iconCls: 'fa-about',
         bind: {
             html: '<p>' + I18n.get('app.about') + '</p>'
+            + '<p>' + I18n.get('app.newsapi') + '</p>'
         }
     }]
 });

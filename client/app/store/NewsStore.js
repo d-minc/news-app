@@ -23,11 +23,14 @@ Ext.define('News.store.NewsStore', {
             //,
             // rootProperty: 'items'
         },
-        url: '/news/{lang}/{category}',
-        extraParams: {
-            lang: 'pl',//TODO: dominc, read from dropdown
-            category: 'business'//TODO: dominc, read from dropdown
-        }
+        // url: '/news/{lang}/{category}',
+        //TODO: dominc, change to dynamic parameters
+        url: '/news/us/business'
+        // ,
+        // extraParams: {
+        //     lang: 'pl',//TODO: dominc, read from dropdown
+        //     category: 'business'//TODO: dominc, read from dropdown
+        // }
     },
 
     autoLoad: true

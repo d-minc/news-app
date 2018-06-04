@@ -48,6 +48,7 @@ Ext.define('News.I18n', {
     app: {
         name: {pl: 'Wiadomości ze świata'},
         about: {pl: 'Dostęp do najnowszych wiadomości z całego świata.'},
+        newsapi: {pl: 'Powered by News API'},
         tab: {
             about: {pl: 'O aplikacji'},
             main: {pl: 'Strona główna'}
