@@ -1,9 +1,8 @@
-package com.mincd.news.exchange.service;
+package com.mincd.news.external.service;
 
-import com.mincd.news.article.model.ArticleDO;
 import com.mincd.news.article.model.CategoryDO;
 import com.mincd.news.article.model.CountryDO;
-import com.mincd.news.exchange.model.NewsArticlesDO;
+import com.mincd.news.external.model.ExternalArticlesDO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -11,14 +10,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -50,21 +46,6 @@ public class ExternalNewsService {
     }
 
     /**
-     * Get the articles from external api
-     *
-     * @param lang
-     * @param category
-     * @return
-     */
-    public ArticleDO readArticles(String lang, String category) {
-        //TODO: dominc, refactor
-        NewsArticlesDO result;
-        result = getExternalArticles(lang, category);
-        //TODO: return proper object
-        return new ArticleDO();
-    }
-
-    /**
      * External Api rest call
      *
      * @param lang
@@ -72,31 +53,33 @@ public class ExternalNewsService {
      * @param category @return
      * @throws RestClientException
      */
-    private NewsArticlesDO getExternalArticles(String lang, String category) {
+    public ExternalArticlesDO getExternalArticles(String lang, String category) {
         //TODO: map lang to country
-        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(NEWS_API_URI)
-                .queryParam("country", lang)
-                .queryParam("category", category)
-                .queryParam("apiKey", API_KEY);
-
+        String uri = generateUri(lang, category);
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(
-                Charset.forName(StandardCharsets.UTF_8.name())));
-        HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
-        NewsArticlesDO result = null;
+        HttpEntity<String> request = prepareRequest();
+        ExternalArticlesDO result = null;
         try {
-            //TODO: dominc, correct the technicals
-//            ResponseEntity<NewsArticlesDO> response = restTemplate.exchange(uriComponentsBuilder.toUriString(), HttpMethod.GET, entity, NewsArticlesDO.class);
-            ResponseEntity<String> response = restTemplate.exchange(uriComponentsBuilder.toUriString(), HttpMethod.GET, entity, String.class);
-//            result = response.getBody();
-            result = new NewsArticlesDO();
+            ResponseEntity<ExternalArticlesDO> response = restTemplate.exchange(uri, HttpMethod.GET, request, ExternalArticlesDO.class);
+            result = response.getBody();
         } catch (RestClientException e) {
             //TODO: dominc, throw e?
             logger.warn(e.getMessage());
         }
         return result;
+    }
+
+    private HttpEntity<String> prepareRequest() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        return new HttpEntity<>("parameters", headers);
+    }
+
+    private String generateUri(String lang, String category) {
+        return UriComponentsBuilder.fromHttpUrl(NEWS_API_URI)
+                .queryParam("country", lang)
+                .queryParam("category", category)
+                .queryParam("apiKey", API_KEY).toUriString();
     }
 
 }

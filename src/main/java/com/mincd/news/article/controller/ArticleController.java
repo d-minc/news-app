@@ -1,6 +1,6 @@
 package com.mincd.news.article.controller;
 
-import com.mincd.news.article.model.ArticleDO;
+import com.mincd.news.article.model.ArticlesDO;
 import com.mincd.news.article.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +20,7 @@ public class ArticleController {
 
     @RequestMapping(value = "/news/{lang}/{category}", method = RequestMethod.GET)
     @ResponseBody
-    ArticleDO calculateIncome(@PathVariable("lang") String lang, @PathVariable("category") String category) {
+    ArticlesDO calculateIncome(@PathVariable("lang") String lang, @PathVariable("category") String category) {
         return articleService.getArticles(lang, category);
     }
 

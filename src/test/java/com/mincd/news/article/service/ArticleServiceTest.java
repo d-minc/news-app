@@ -1,6 +1,6 @@
 package com.mincd.news.article.service;
 
-import com.mincd.news.exchange.service.ExternalNewsService;
+import com.mincd.news.external.service.ExternalNewsService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

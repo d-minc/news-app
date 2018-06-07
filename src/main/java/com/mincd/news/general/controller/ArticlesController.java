@@ -2,7 +2,7 @@ package com.mincd.news.general.controller;
 
 import com.mincd.news.article.model.CategoryDO;
 import com.mincd.news.article.model.CountryDO;
-import com.mincd.news.exchange.service.ExternalNewsService;
+import com.mincd.news.external.service.ExternalNewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
