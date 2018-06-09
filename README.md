@@ -54,6 +54,8 @@ Frontend (without ExjJs library files) is in:
 
 **About**
 
+![Screenshot](/screenshot-1.jpg?raw=true "Screenshot")
+
 Simple application for caching and showing the news. It consumes the https://newsapi.org articles*.
 
 *Some article charaters are not correctly read by the newsapi. Articles can contain the unknown unicode character which is: ```\ufffd```
