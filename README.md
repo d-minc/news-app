@@ -22,6 +22,7 @@ https://www.sencha.com/products/extjs/cmd-download/
 * Make sure that the Ext JS version in news-app/client/workspace.json matches the downloaded Ext JS version
 * Install Maven if you don't have it
 
+Configuration
 1. Clone the repository
 2.  ```cd news-app/client```
 
