@@ -5,8 +5,9 @@ Ext.define('News.view.main.news.header.NewsHeader', {
     controller: 'header',
 
     requires: [
-        'News.I18n',
         'Ext.button.*',
+        'News.I18n',
+        'News.view.main.news.gridpanel.components.countrycombobox.CountryStore',
         'News.view.main.news.header.HeaderController'
     ],
 
@@ -31,14 +32,5 @@ Ext.define('News.view.main.news.header.NewsHeader', {
             change: 'onCountryChange'
         }
     }]
-
-    // editor: {
-    //     xtype : 'combobox',
-    //     id : 'countryCodeCombobox',
-    //     store : Ext.create('IncomeCalculator.view.main.salary.gridpanel.components.countrycombobox.CountryStore'),
-    //     displayField : 'countryCode',
-    //     valueField : 'countryCode',
-    //     editable: false,
-    //     mode : 'local'
 
 });
