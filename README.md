@@ -54,7 +54,7 @@ Frontend (without ExjJs library files) is in:
 
 **About**
 
-![Screenshot](/screenshot-1.jpg?raw=true "Screenshot")
+![Screenshot](/screenshot-1.png?raw=true "Screenshot")
 
 Simple application for caching and showing the news. It consumes the https://newsapi.org articles*.
 
