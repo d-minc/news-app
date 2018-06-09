@@ -40,13 +40,13 @@ https://www.sencha.com/products/extjs/cmd-download/
 
 1. ```mvn clean install -Pproduction```
 
-** Folders **
+**Folders**
 
 Backend is available in folder:
 
-* src
+* ```src```
 
 Frontend (without ExjJs library files) is in:
 
-* client/app
-* client/classic/src
+* ```client/app```
+* ```client/classic/src```
