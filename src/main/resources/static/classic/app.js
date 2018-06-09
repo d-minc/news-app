@@ -96968,8 +96968,8 @@ if (!langCode) {
 }
 Ext.define('News.I18n', {xtype:'I18n', alternateClassName:'I18n', singleton:true, constructor:function() {
   this.languageCode = langCode;
-}, newsgrid:{title:{pl:'Najnowsze wiadomości'}, column:{country:{pl:'Kraj'}, category:{pl:'Kategoria'}, author:{pl:'Autor'}, title:{pl:'Tytuł'}, date:{pl:'Data'}, sourceName:{pl:'Źródło'}, articleUrl:{pl:'Link'}, imageUrl:{pl:' '}, description:{pl:'Opis'}}, image:{pl:'Obrazek'}, button:{refresh:{pl:'Odśwież'}}, combobox:{country:{pl:'Kraj'}}, error:{maxRecords:{pl:'Nie można dodać więcej rekordów'}, update:{pl:'Błąd aktualizacji danych'}, timedout:{pl:'Przekroczono limit czasu żądania'}, newsapi:{pl:'Błąd serwisu zewnętrznego Newsapi'}}}, 
-app:{name:{pl:'Wiadomości ze świata'}, about:{pl:'Dostęp do najnowszych wiadomości z całego świata.'}, newsapi:{pl:'Powered by News API'}, tab:{about:{pl:'O aplikacji'}, main:{pl:'Strona główna'}}, loading:{pl:'Ładowanie...'}}, get:function(key) {
+}, newsgrid:{title:{pl:'Najnowsze wiadomości'}, column:{country:{pl:'Kraj'}, category:{pl:'Kategoria'}, author:{pl:'Autor'}, title:{pl:'Tytuł'}, date:{pl:'Data'}, sourceName:{pl:'Źródło'}, articleUrl:{pl:'Link'}, imageUrl:{pl:' '}, description:{pl:'Opis'}}, image:{pl:'Obrazek'}, button:{refresh:{pl:'Odśwież'}}, combobox:{country:{pl:'Kraj'}, category:{pl:'Kategoria'}}, error:{maxRecords:{pl:'Nie można dodać więcej rekordów'}, update:{pl:'Błąd aktualizacji danych'}, timedout:{pl:'Przekroczono limit czasu żądania'}, 
+newsapi:{pl:'Błąd serwisu zewnętrznego Newsapi'}}}, app:{name:{pl:'Wiadomości ze świata'}, about:{pl:'Dostęp do najnowszych wiadomości z całego świata.'}, newsapi:{pl:'Powered by News API'}, tab:{about:{pl:'O aplikacji'}, main:{pl:'Strona główna'}}, loading:{pl:'Ładowanie...'}}, get:function(key) {
   var keys = key.split('.'), result = this;
   for (var i = 0; i < keys.length; i++) {
     result = result[keys[i]];
@@ -96995,7 +96995,7 @@ app:{name:{pl:'Wiadomości ze świata'}, about:{pl:'Dostęp do najnowszych wiado
   }
   return value;
 }});
-Ext.define('News.store.NewsStore', {extend:Ext.data.Store, alias:'store.newsstore', model:'News.model.NewsModel', storeId:'newsstore', proxyParameters:{lang:'us', category:'business'}, proxy:{type:'ajax', reader:{type:'json', rootProperty:'articles'}, url:'/news/us/business', messageProperty:'message', listeners:{exception:function(proxy, response, operation, eOpts) {
+Ext.define('News.store.NewsStore', {extend:Ext.data.Store, alias:'store.newsstore', model:'News.model.NewsModel', storeId:'newsstore', proxyParameters:{lang:'pl', category:'business'}, proxy:{type:'ajax', reader:{type:'json', rootProperty:'articles'}, url:'/news/pl/business', messageProperty:'message', listeners:{exception:function(proxy, response, operation, eOpts) {
   var responseText = Ext.decode(response.responseText);
   Ext.Msg.alert(I18n.get('newsgrid.error.newsapi'), responseText.message, Ext.emptyFn);
 }}}, autoLoad:true, reloadStoreWithParameters:function() {
@@ -97026,19 +97026,26 @@ Ext.define('News.view.main.news.header.HeaderController', {extend:Ext.app.ViewCo
   var newsStore = Ext.StoreManager.lookup('newsstore');
   newsStore.setLangProxyParameter(combobox.value);
   newsStore.reloadStoreWithParameters();
+}, onCategoryChange:function(combobox) {
+  var newsStore = Ext.StoreManager.lookup('newsstore');
+  newsStore.setCategoryProxyParameter(combobox.value);
+  newsStore.reloadStoreWithParameters();
 }});
-Ext.define('News.model.CountryModel', {extend:News.model.Base, fields:[{name:'country', type:'string'}]});
-Ext.define('News.view.main.news.gridpanel.components.countrycombobox.CountryStore', {extend:Ext.data.Store, alias:'store.country', model:'News.model.CountryModel', data:[{country:'pl'}, {country:'us'}, {country:'gb'}, {country:'de'}]});
-Ext.define('News.view.main.news.gridpanel.grid.NewsGrid', {extend:Ext.grid.Panel, xtype:'newsgrid', buttonAlign:'start', title:I18n.get('newsgrid.title'), store:{type:'newsstore'}, plugins:'gridfilters', controller:'grid', layout:'fit', height:600, columns:[{text:I18n.get('newsgrid.column.imageUrl'), dataIndex:'imageUrl', type:'string', flex:1, renderer:function(imgSrc) {
+Ext.define('News.view.main.news.gridpanel.components.countrycombobox.CountryModel', {extend:News.model.Base, fields:[{name:'country', type:'string'}]});
+Ext.define('News.view.main.news.gridpanel.components.countrycombobox.CountryStore', {extend:Ext.data.Store, alias:'store.country', model:'News.view.main.news.gridpanel.components.countrycombobox.CountryModel', data:[{country:'pl'}, {country:'us'}, {country:'gb'}, {country:'de'}]});
+Ext.define('News.view.main.news.gridpanel.grid.NewsGrid', {extend:Ext.grid.Panel, xtype:'newsgrid', buttonAlign:'start', title:I18n.get('newsgrid.title'), store:{type:'newsstore'}, plugins:'gridfilters', controller:'grid', layout:'fit', height:600, columns:[{text:I18n.get('newsgrid.column.imageUrl'), dataIndex:'imageUrl', type:'string', flex:2, renderer:function(imgSrc) {
   return '\x3cimg src\x3d"' + imgSrc + '" alt\x3d"' + I18n.get('newsgrid.image') + '" \x3e';
-}}, {text:I18n.get('newsgrid.column.title'), dataIndex:'title', type:'string', flex:1}, {text:I18n.get('newsgrid.column.description'), dataIndex:'description', type:'string', flex:1}, {text:I18n.get('newsgrid.column.sourceName'), dataIndex:'sourceName', type:'string', flex:1}, {text:I18n.get('newsgrid.column.author'), dataIndex:'author', type:'string', flex:1}, {text:I18n.get('newsgrid.column.date'), dataIndex:'date', type:'date', flex:1, renderer:Ext.util.Format.dateRenderer('Y-m-d H:i:s')}, {text:I18n.get('newsgrid.column.articleUrl'), 
-dataIndex:'articleUrl', type:'string', flex:1, renderer:function(url) {
-  return '\x3ca href\x3d"' + url + '"\x3e' + url + '\x3c/a\x3e';
+}}, {text:I18n.get('newsgrid.column.title'), dataIndex:'title', type:'string', flex:4, filter:{type:'string'}}, {text:I18n.get('newsgrid.column.description'), dataIndex:'description', type:'string', flex:6, filter:{type:'string'}}, {text:I18n.get('newsgrid.column.sourceName'), dataIndex:'sourceName', type:'string', flex:2, filter:{type:'string'}}, {text:I18n.get('newsgrid.column.author'), dataIndex:'author', type:'string', flex:2, filter:{type:'string'}}, {text:I18n.get('newsgrid.column.date'), dataIndex:'date', 
+type:'date', flex:2, renderer:Ext.util.Format.dateRenderer('Y-m-d'), filter:{type:'date'}}, {text:I18n.get('newsgrid.column.articleUrl'), dataIndex:'articleUrl', type:'string', flex:1, renderer:function(url) {
+  return '\x3ca href\x3d"' + url + '"\x3e[' + I18n.get('newsgrid.column.articleUrl') + ']\x3c/a\x3e';
 }}]});
 Ext.define('News.view.main.news.gridpanel.NewsGridPanel', {extend:Ext.panel.Panel, xtype:'newsgridpanel', controller:'gridpanel', layout:'fit', items:[{layout:{type:'vbox', align:'left', padding:10}, items:[{xtype:'newsgrid', reference:'newsgrid', width:'100%', region:'center', flex:3}]}]});
 Ext.define('News.view.main.news.footer.NewsFooter', {extend:Ext.panel.Panel, xtype:'newsfooter', controller:'footer', layout:{type:'hbox', align:'begin', pack:'center', padding:10}, items:[{xtype:'button', text:I18n.get('newsgrid.button.refresh'), listeners:{click:'onRefreshClick'}}]});
+Ext.define('News.view.main.news.gridpanel.components.categorycombobox.CategoryModel', {extend:News.model.Base, fields:[{name:'category', type:'string'}]});
+Ext.define('News.view.main.news.gridpanel.components.categorycombobox.CategoryStore', {extend:Ext.data.Store, alias:'store.category', model:'News.view.main.news.gridpanel.components.categorycombobox.CategoryModel', data:[{category:'business'}, {category:'entertainment'}, {category:'general'}, {category:'health'}, {category:'science'}, {category:'sports'}, {category:'technology'}]});
 Ext.define('News.view.main.news.NewsPanel', {extend:Ext.panel.Panel, xtype:'newspanel', id:'newspanel', layout:{type:'vbox', align:'stretch', padding:10}, items:[{xtype:'newsheader', flex:1}, {xtype:'newsgridpanel', flex:3}, {xtype:'newsfooter', flex:1}]});
 Ext.define('News.view.main.Main', {extend:Ext.tab.Panel, xtype:'app-main', controller:'main', viewModel:'main', ui:'navigation', tabBarHeaderPosition:1, titleRotation:0, tabRotation:0, header:{layout:{align:'stretchmax'}, title:{bind:{text:'{name}'}, flex:0}, iconCls:'fa-th-list'}, tabBar:{flex:1, layout:{align:'stretch', overflowHandler:'none'}}, responsiveConfig:{tall:{headerPosition:'top'}, wide:{headerPosition:'left'}}, defaults:{bodyPadding:20, tabConfig:{plugins:'responsive', responsiveConfig:{wide:{iconAlign:'left', 
 textAlign:'left'}, tall:{iconAlign:'top', textAlign:'center', width:120}}}}, items:[{title:I18n.get('app.tab.main'), iconCls:'fa-home', items:[{xtype:'newspanel'}]}, {title:I18n.get('app.tab.about'), iconCls:'fa-about', bind:{html:'\x3cp\x3e' + I18n.get('app.about') + '\x3c/p\x3e' + '\x3cp\x3e' + I18n.get('app.newsapi') + '\x3c/p\x3e'}}]});
-Ext.define('News.view.main.news.header.NewsHeader', {extend:Ext.panel.Panel, xtype:'newsheader', controller:'header', layout:{type:'hbox', align:'begin', pack:'center', padding:10}, items:[{xtype:'combobox', id:'countryCodeCombobox', store:Ext.create('News.view.main.news.gridpanel.components.countrycombobox.CountryStore'), displayField:'country', valueField:'country', editable:false, mode:'local', value:'pl', fieldLabel:I18n.get('newsgrid.combobox.country'), listeners:{change:'onCountryChange'}}]});
+Ext.define('News.view.main.news.header.NewsHeader', {extend:Ext.panel.Panel, xtype:'newsheader', controller:'header', layout:{type:'hbox', align:'begin', pack:'center'}, defaults:{padding:10, margin:10}, items:[{xtype:'combobox', id:'countryCodeCombobox', store:Ext.create('News.view.main.news.gridpanel.components.countrycombobox.CountryStore'), displayField:'country', valueField:'country', editable:false, mode:'local', value:'pl', fieldLabel:I18n.get('newsgrid.combobox.country'), listeners:{change:'onCountryChange'}}, 
+{xtype:'combobox', id:'categoryCombobox', store:Ext.create('News.view.main.news.gridpanel.components.categorycombobox.CategoryStore'), displayField:'category', valueField:'category', editable:false, mode:'local', value:'business', fieldLabel:I18n.get('newsgrid.combobox.category'), listeners:{change:'onCategoryChange'}}]});
 Ext.application({extend:News.Application, name:'News', mainView:'News.view.main.Main'});

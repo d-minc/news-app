@@ -1,4 +1,4 @@
-Ext.define('News.model.CountryModel', {
+Ext.define('News.view.main.news.gridpanel.components.countrycombobox.CountryModel', {
     extend: 'News.model.Base',
 
     fields: [

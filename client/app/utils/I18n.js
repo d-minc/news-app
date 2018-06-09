@@ -42,7 +42,8 @@ Ext.define('News.I18n', {
         },
 
         combobox: {
-            country: {pl: 'Kraj'}
+            country: {pl: 'Kraj'},
+            category: {pl: 'Kategoria'}
         },
 
         error: {

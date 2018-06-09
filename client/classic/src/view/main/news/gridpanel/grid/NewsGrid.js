@@ -36,7 +36,7 @@ Ext.define('News.view.main.news.gridpanel.grid.NewsGrid', {
             text: I18n.get('newsgrid.column.imageUrl'),
             dataIndex: 'imageUrl',
             type: 'string',
-            flex: 1,
+            flex: 2,
             renderer: function (imgSrc) {
                 return '<img src="' + imgSrc + '" alt="' + I18n.get('newsgrid.image') + '" >';
             }
@@ -45,32 +45,47 @@ Ext.define('News.view.main.news.gridpanel.grid.NewsGrid', {
             text: I18n.get('newsgrid.column.title'),
             dataIndex: 'title',
             type: 'string',
-            flex: 1
+            flex: 4,
+            filter: {
+                type: 'string'
+            }
         },
         {
             text: I18n.get('newsgrid.column.description'),
             dataIndex: 'description',
             type: 'string',
-            flex: 1
+            flex: 6,
+            filter: {
+                type: 'string'
+            }
         },
         {
             text: I18n.get('newsgrid.column.sourceName'),
             dataIndex: 'sourceName',
             type: 'string',
-            flex: 1
+            flex: 2,
+            filter: {
+                type: 'string'
+            }
         },
         {
             text: I18n.get('newsgrid.column.author'),
             dataIndex: 'author',
             type: 'string',
-            flex: 1
+            flex: 2,
+            filter: {
+                type: 'string'
+            }
         },
         {
             text: I18n.get('newsgrid.column.date'),
             dataIndex: 'date',
             type: 'date',
-            flex: 1,
-            renderer: Ext.util.Format.dateRenderer('Y-m-d H:i:s')
+            flex: 2,
+            renderer: Ext.util.Format.dateRenderer('Y-m-d'),
+            filter: {
+                type: 'date'
+            }
         },
         {
             text: I18n.get('newsgrid.column.articleUrl'),
@@ -78,7 +93,7 @@ Ext.define('News.view.main.news.gridpanel.grid.NewsGrid', {
             type: 'string',
             flex: 1,
             renderer: function (url) {
-                return '<a href="' + url + '">' + url + '</a>';
+                return '<a href="' + url + '">[' + I18n.get('newsgrid.column.articleUrl') + ']</a>';
             }
         }
     ]

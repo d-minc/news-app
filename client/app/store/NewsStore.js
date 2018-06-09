@@ -18,7 +18,7 @@ Ext.define('News.store.NewsStore', {
     storeId: 'newsstore',
 
     proxyParameters: {
-        lang: 'us',
+        lang: 'pl',
         category: 'business'
     },
 
@@ -28,7 +28,7 @@ Ext.define('News.store.NewsStore', {
             type: 'json',
             rootProperty: 'articles'
         },
-        url: '/news/us/business',
+        url: '/news/pl/business',
         messageProperty: 'message',
         listeners: {
             exception: function (proxy, response, operation, eOpts) {

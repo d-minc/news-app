@@ -15,5 +15,14 @@ Ext.define('News.view.main.news.header.HeaderController', {
         var newsStore = Ext.StoreManager.lookup('newsstore');
         newsStore.setLangProxyParameter(combobox.value);
         newsStore.reloadStoreWithParameters();
+    },
+
+    /**
+     * Category change listener
+     */
+    onCategoryChange: function (combobox) {
+        var newsStore = Ext.StoreManager.lookup('newsstore');
+        newsStore.setCategoryProxyParameter(combobox.value);
+        newsStore.reloadStoreWithParameters();
     }
 });

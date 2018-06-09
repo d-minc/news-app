@@ -4,10 +4,10 @@ Ext.define('News.view.main.news.gridpanel.components.countrycombobox.CountryStor
     alias: 'store.country',
 
     requires: [
-        'News.model.CountryModel'
+        'News.view.main.news.gridpanel.components.countrycombobox.CountryModel'
     ],
 
-    model: 'News.model.CountryModel',
+    model: 'News.view.main.news.gridpanel.components.countrycombobox.CountryModel',
 
     data: [
         {country: 'pl'},
