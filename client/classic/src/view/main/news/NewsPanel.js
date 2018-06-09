@@ -17,6 +17,10 @@ Ext.define('News.view.main.news.NewsPanel', {
 
     items: [
         {
+            xtype: 'newsheader',
+            flex: 1
+        },
+        {
             xtype: 'newsgridpanel',
             flex: 3
         },

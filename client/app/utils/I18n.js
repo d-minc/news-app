@@ -41,6 +41,10 @@ Ext.define('News.I18n', {
             refresh: {pl: 'Odśwież'}
         },
 
+        combobox: {
+            country: {pl: 'Kraj'}
+        },
+
         error: {
             maxRecords: {pl: 'Nie można dodać więcej rekordów'},
             update: {pl: 'Błąd aktualizacji danych'},

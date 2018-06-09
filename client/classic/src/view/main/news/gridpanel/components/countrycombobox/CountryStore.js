@@ -3,15 +3,17 @@ Ext.define('News.view.main.news.gridpanel.components.countrycombobox.CountryStor
 
     alias: 'store.country',
 
+    requires: [
+        'News.model.CountryModel'
+    ],
+
     model: 'News.model.CountryModel',
 
-    proxy: {
-        type: 'ajax',
-        url: '/countries',
-        reader: {
-            type: 'json'
-        }
-    },
-    autoLoad: true
+    data: [
+        {country: 'pl'},
+        {country: 'us'},
+        {country: 'gb'},
+        {country: 'de'}
+    ]
 
 });

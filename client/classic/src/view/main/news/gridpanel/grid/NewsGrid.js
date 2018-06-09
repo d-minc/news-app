@@ -15,11 +15,6 @@ Ext.define('News.view.main.news.gridpanel.grid.NewsGrid', {
         'Ext.panel.*'
     ],
 
-    plugins: {
-        ptype: 'cellediting',
-        clicksToEdit: 1
-    },
-
     buttonAlign: 'start',
 
     title: I18n.get('newsgrid.title'),
@@ -27,6 +22,8 @@ Ext.define('News.view.main.news.gridpanel.grid.NewsGrid', {
     store: {
         type: 'newsstore'
     },
+
+    plugins: 'gridfilters',
 
     controller: 'grid',
 

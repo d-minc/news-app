@@ -17,14 +17,17 @@ Ext.define('News.store.NewsStore', {
 
     storeId: 'newsstore',
 
+    proxyParameters: {
+        lang: 'us',
+        category: 'business'
+    },
+
     proxy: {
         type: 'ajax',
         reader: {
             type: 'json',
             rootProperty: 'articles'
         },
-        // url: '/news/{lang}/{category}',
-        //TODO: dominc, change to dynamic parameters
         url: '/news/us/business',
         messageProperty: 'message',
         listeners: {
@@ -33,13 +36,27 @@ Ext.define('News.store.NewsStore', {
                 Ext.Msg.alert(I18n.get('newsgrid.error.newsapi'), responseText.message, Ext.emptyFn);
             }
         }
-        // ,
-        // extraParams: {
-        //     lang: 'pl',//TODO: dominc, read from dropdown
-        //     category: 'business'//TODO: dominc, read from dropdown
-        // }
     },
 
-    autoLoad: true
+    autoLoad: true,
+
+    /**
+     * Updates the url path params (Ext do not have built-in functionality for path parameters)
+     * @param lang
+     * @param category
+     */
+    reloadStoreWithParameters: function () {
+        var url = '/news/' + this.proxyParameters.lang + '/' + this.proxyParameters.category;
+        this.proxy.url = url;
+        this.reload();
+    },
+
+    setLangProxyParameter: function (lang) {
+        this.proxyParameters.lang = lang;
+    },
+
+    setCategoryProxyParameter: function (category) {
+        this.proxyParameters.category = category;
+    }
 
 });
