@@ -9,6 +9,7 @@ Ext.define('News.store.NewsStore', {
     alias: 'store.newsstore',
 
     requires: [
+        'News.I18n',
         'News.model.NewsModel'
     ],
 
@@ -25,7 +26,14 @@ Ext.define('News.store.NewsStore', {
         },
         // url: '/news/{lang}/{category}',
         //TODO: dominc, change to dynamic parameters
-        url: '/news/us/business'
+        url: '/news/us/business',
+        messageProperty: 'message',
+        listeners: {
+            exception: function (proxy, response, operation, eOpts) {
+                var responseText = Ext.decode(response.responseText);
+                Ext.Msg.alert(I18n.get('newsgrid.error.newsapi'), responseText.message, Ext.emptyFn);
+            }
+        }
         // ,
         // extraParams: {
         //     lang: 'pl',//TODO: dominc, read from dropdown

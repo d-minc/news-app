@@ -24,11 +24,10 @@ public class ExternalNewsService {
     public static final String NEWS_API_URI = "https://newsapi.org/v2/top-headlines";
     public static final String API_KEY = "0583e85390b449f0a8e506415d3e26d9";
     private static final Logger logger = LoggerFactory.getLogger(ExternalNewsService.class);
+    public static final String HTTP_HEADER_X_NO_CACHE = "X-No-Cache";
+    public static final String HTTP_HEADER_X_NO_CACHE_TRUE_VALUE = "true";
 
     //TODO: dominc, add Cache
-
-    public ExternalNewsService() {
-    }
 
     /**
      * Get country codes available in the application
@@ -59,12 +58,14 @@ public class ExternalNewsService {
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<String> request = prepareRequest();
         ExternalArticlesDO result = null;
+        //TODO: add temp mock to prevent exceeding free daily newsapi requests amount
         try {
             ResponseEntity<ExternalArticlesDO> response = restTemplate.exchange(uri, HttpMethod.GET, request, ExternalArticlesDO.class);
             result = response.getBody();
         } catch (RestClientException e) {
             //TODO: dominc, throw e?
             logger.warn(e.getMessage());
+            throw e;
         }
         return result;
     }
@@ -72,6 +73,9 @@ public class ExternalNewsService {
     private HttpEntity<String> prepareRequest() {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        //without the header below, the Newsapi tries to cache the request, but it causes an error on api side
+        //TODO: dominc, cache will be added on this application side
+        headers.add(HTTP_HEADER_X_NO_CACHE, HTTP_HEADER_X_NO_CACHE_TRUE_VALUE);
         return new HttpEntity<>("parameters", headers);
     }
 

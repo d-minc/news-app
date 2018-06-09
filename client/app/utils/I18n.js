@@ -42,7 +42,8 @@ Ext.define('News.I18n', {
         error: {
             maxRecords: {pl: 'Nie można dodać więcej rekordów'},
             update: {pl: 'Błąd aktualizacji danych'},
-            timedout: {pl: 'Przekroczono limit czasu żądania'}
+            timedout: {pl: 'Przekroczono limit czasu żądania'},
+            newsapi: {pl: 'Błąd serwisu zewnętrznego Newsapi'}
         }
     },
     app: {
