@@ -35,6 +35,8 @@ Ext.define('News.I18n', {
             description: {pl: 'Opis'}
         },
 
+        image: {pl: 'Obrazek'},
+
         button: {
             refresh: {pl: 'Odśwież'}
         },

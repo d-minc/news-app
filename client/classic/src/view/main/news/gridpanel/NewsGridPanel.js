@@ -9,6 +9,7 @@ Ext.define('News.view.main.news.gridpanel.NewsGridPanel', {
     ],
 
     controller: 'gridpanel',
+
     layout: 'fit',
 
     items: [{

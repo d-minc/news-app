@@ -6195,6 +6195,15 @@
 .bold-field .x-grid-cell {
     font-weight: bold;
 }
+/* C:/PROJEKTY/news-app/client/classic/src/view/main/news/gridpanel/grid/NewsGrid.scss:13 */
+.x-grid-cell-inner {
+    white-space: normal;
+}
+/* C:/PROJEKTY/news-app/client/classic/src/view/main/news/gridpanel/grid/NewsGrid.scss:17 */
+.x-grid-cell img {
+    max-width: 128px;
+    max-height: 128px;
+}
 /* C:/PROJEKTY/news-app/client/ext/classic/theme-base/sass/etc/mixins/frame.scss:187 */
 .x-tab-navigation-top {
     -webkit-border-radius: 0;

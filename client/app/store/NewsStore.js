@@ -20,9 +20,8 @@ Ext.define('News.store.NewsStore', {
     proxy: {
         type: 'ajax',
         reader: {
-            type: 'json'
-            //,
-            // rootProperty: 'items'
+            type: 'json',
+            rootProperty: 'articles'
         },
         // url: '/news/{lang}/{category}',
         //TODO: dominc, change to dynamic parameters

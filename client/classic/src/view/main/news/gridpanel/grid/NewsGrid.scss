@@ -9,3 +9,12 @@
 .bold-field .x-grid-cell {
   font-weight: bold;
 }
+
+.x-grid-cell-inner {
+  white-space: normal;
+}
+
+.x-grid-cell img {
+  max-width: 128px;
+  max-height: 128px;
+}
