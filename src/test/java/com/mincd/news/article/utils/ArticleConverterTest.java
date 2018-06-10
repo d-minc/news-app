@@ -23,14 +23,14 @@ import static org.junit.Assert.assertThat;
 @RunWith(MockitoJUnitRunner.class)
 public class ArticleConverterTest {
 
-    public static final String AUTHOR = "John Doe";
-    public static final String DESCRIPTION = "How to do";
-    public static final String PUBLISHED_AT = "01-01-1990 10:20:00";
-    public static final String PUBLISHED_AT_DATE_ONLY = "1990-01-01";
-    public static final String SOURCE_NAME = "News portal";
-    public static final String TITLE = "My art";
-    public static final String URL = "some.url/art";
-    public static final String URL_TO_IMAGE = "some.url/image.png";
+    private static final String AUTHOR = "John Doe";
+    private static final String DESCRIPTION = "How to do";
+    private static final String PUBLISHED_AT = "01-01-1990 10:20:00";
+    private static final String PUBLISHED_AT_DATE_ONLY = "1990-01-01";
+    private static final String SOURCE_NAME = "News portal";
+    private static final String TITLE = "My art";
+    private static final String URL = "some.url/art";
+    private static final String URL_TO_IMAGE = "some.url/image.png";
 
     @InjectMocks
     private ArticleConverter articleConverter;

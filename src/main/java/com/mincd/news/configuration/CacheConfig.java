@@ -30,7 +30,7 @@ public class CacheConfig extends CachingConfigurerSupport {
     /**
      * Configures the Caching properties
      *
-     * @return
+     * @return Cache Manager
      */
     @Bean
     public CacheManager timeoutCacheManager() {

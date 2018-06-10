@@ -26,9 +26,9 @@ public class ExternalNewsService {
     /**
      * External Api rest call
      *
-     * @param lang
-     * @param category
-     * @return
+     * @param lang Language code for a country
+     * @param category Article category available in newsapi eg. "business"
+     * @return External articles
      */
     public ExternalArticlesDO getExternalArticles(String lang, String category) {
         String uri = generateUri(lang, category);
@@ -50,7 +50,7 @@ public class ExternalNewsService {
      * Without the "X-No-Cache" header, the Newsapi tries to cache the request, but it causes an error on api side.
      * Newsapi caching needs to be switched off because, there is caching in the application
      *
-     * @return
+     * @return Http headers
      * @see com.mincd.news.configuration.CacheConfig
      */
     private HttpEntity<String> prepareRequest() {
