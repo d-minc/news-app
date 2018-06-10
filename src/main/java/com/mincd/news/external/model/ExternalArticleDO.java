@@ -8,13 +8,13 @@ import java.util.Date;
 public class ExternalArticleDO {
 
     private ExternalArticleSourceDO source;
+
     private String author;
     private String title;
     private String description;
     private String url;
     private String urlToImage;
-    private Date publishedAt;//TODO: dominc, change to Date eg. "2018-06-03T08:01:48Z"
-
+    private Date publishedAt;
     public ExternalArticleSourceDO getSource() {
         return source;
     }
@@ -71,4 +71,32 @@ public class ExternalArticleDO {
         this.publishedAt = publishedAt;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ExternalArticleDO that = (ExternalArticleDO) o;
+
+        if (source != null ? !source.equals(that.source) : that.source != null) return false;
+        if (author != null ? !author.equals(that.author) : that.author != null) return false;
+        if (!title.equals(that.title)) return false;
+        if (description != null ? !description.equals(that.description) : that.description != null) return false;
+        if (!url.equals(that.url)) return false;
+        if (urlToImage != null ? !urlToImage.equals(that.urlToImage) : that.urlToImage != null) return false;
+        return publishedAt.equals(that.publishedAt);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = source != null ? source.hashCode() : 0;
+        result = 31 * result + (author != null ? author.hashCode() : 0);
+        result = 31 * result + title.hashCode();
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + url.hashCode();
+        result = 31 * result + (urlToImage != null ? urlToImage.hashCode() : 0);
+        result = 31 * result + publishedAt.hashCode();
+        return result;
+    }
 }

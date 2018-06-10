@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class ArticleConverter {
-
-    //TODO: dominc, remove this converter and use http://mapstruct.org/ plugin
+    //this class could be replaced with http://mapstruct.org/ plugin,
+    //but in this application there is only one conversion
 
     private static final String DATE_FORMAT_YYYY_MM_DD = "yyyy-MM-dd";
 

@@ -35,4 +35,23 @@ public class ArticlesDO {
         this.articles = articles;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ArticlesDO that = (ArticlesDO) o;
+
+        if (!country.equals(that.country)) return false;
+        if (!category.equals(that.category)) return false;
+        return articles != null ? articles.equals(that.articles) : that.articles == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = country.hashCode();
+        result = 31 * result + category.hashCode();
+        result = 31 * result + (articles != null ? articles.hashCode() : 0);
+        return result;
+    }
 }

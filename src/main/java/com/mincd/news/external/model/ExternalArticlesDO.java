@@ -34,4 +34,24 @@ public class ExternalArticlesDO {
     public void setArticles(List<ExternalArticleDO> articles) {
         this.articles = articles;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ExternalArticlesDO that = (ExternalArticlesDO) o;
+
+        if (totalResults != that.totalResults) return false;
+        if (!status.equals(that.status)) return false;
+        return articles != null ? articles.equals(that.articles) : that.articles == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = status.hashCode();
+        result = 31 * result + totalResults;
+        result = 31 * result + (articles != null ? articles.hashCode() : 0);
+        return result;
+    }
 }
