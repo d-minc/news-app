@@ -15,7 +15,7 @@ public class ArticleConverter {
 
     //TODO: dominc, remove this converter and use http://mapstruct.org/ plugin
 
-    public static final String DATE_FORMAT_YYYY_MM_DD = "yyyy-MM-dd";
+    private static final String DATE_FORMAT_YYYY_MM_DD = "yyyy-MM-dd";
 
     public ArticlesDO convertExternalArticle(final ExternalArticlesDO externalArticleDO, String lang, String category) {
         ArticlesDO articlesDO = new ArticlesDO();

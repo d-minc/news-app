@@ -18,8 +18,8 @@ import java.util.concurrent.TimeUnit;
 public class CacheConfig extends CachingConfigurerSupport {
 
     public static final String TIMEOUT_CACHE_MANAGER = "timeoutCacheManager";
-    public static final int EXPIRATION_TIME_IN_MINUTES = 1;
-    public static final int MAXIMUM_CACHE_SIZE = 100;
+    private static final int EXPIRATION_TIME_IN_MINUTES = 1;
+    private static final int MAXIMUM_CACHE_SIZE = 100;
 
     @Override
     @Bean

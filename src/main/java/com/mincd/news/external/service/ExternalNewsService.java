@@ -13,15 +13,15 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 @Service
 public class ExternalNewsService {
-    public static final String NEWS_API_URI = "https://newsapi.org/v2/top-headlines";
-    public static final String NEWS_API_KEY = "0583e85390b449f0a8e506415d3e26d9";
+    private static final String NEWS_API_URI = "https://newsapi.org/v2/top-headlines";
+    private static final String NEWS_API_KEY = "0583e85390b449f0a8e506415d3e26d9";
     private static final Logger logger = LoggerFactory.getLogger(ExternalNewsService.class);
-    public static final String HTTP_HEADER_X_NO_CACHE = "X-No-Cache";
-    public static final String HTTP_HEADER_X_NO_CACHE_TRUE_VALUE = "true";
+    private static final String HTTP_HEADER_X_NO_CACHE = "X-No-Cache";
+    private static final String HTTP_HEADER_X_NO_CACHE_TRUE_VALUE = "true";
 
     /**
      * External Api rest call
@@ -29,7 +29,6 @@ public class ExternalNewsService {
      * @param lang
      * @param category
      * @return
-     * @throws RestClientException
      */
     public ExternalArticlesDO getExternalArticles(String lang, String category) {
         String uri = generateUri(lang, category);
@@ -56,7 +55,7 @@ public class ExternalNewsService {
      */
     private HttpEntity<String> prepareRequest() {
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         headers.add(HTTP_HEADER_X_NO_CACHE, HTTP_HEADER_X_NO_CACHE_TRUE_VALUE);
         return new HttpEntity<>("parameters", headers);
     }
