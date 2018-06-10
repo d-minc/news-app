@@ -6,8 +6,10 @@
 You can simply run the NewsApp.jar with following command:
 ```java -jar news-app.jar```
 The application will be available at the following address:
-```http://localhost:8080```
+[http://localhost:8080](http://localhost:8080)
 
+The list of available Rest Api is described with Swagger UI on the following address:
+[http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 
 **Develop the application**
 
@@ -60,6 +62,6 @@ Frontend (without ExjJs library files) is in:
 
 ![Screenshot](/screenshot-1.png?raw=true "Screenshot")
 
-Simple application for caching and showing the news. It consumes the https://newsapi.org articles*.
+Simple application for caching and showing the news. It consumes the [https://newsapi.org](https://newsapi.org) articles*.
 
 *Some article charaters are not correctly read by the newsapi. Articles can contain the unknown unicode character which is: ```\ufffd```
