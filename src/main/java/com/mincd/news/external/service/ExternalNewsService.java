@@ -1,7 +1,5 @@
 package com.mincd.news.external.service;
 
-import com.mincd.news.article.model.CategoryDO;
-import com.mincd.news.article.model.CountryDO;
 import com.mincd.news.external.model.ExternalArticlesDO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,8 +14,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 @Service
 public class ExternalNewsService {
@@ -28,21 +24,6 @@ public class ExternalNewsService {
     public static final String HTTP_HEADER_X_NO_CACHE_TRUE_VALUE = "true";
 
     /**
-     * Get country codes available in the application
-     *
-     * @return
-     */
-    public List<CountryDO> getAvailableCountries() {
-        //TODO: dominc, add logic
-        return Collections.singletonList(new CountryDO("PL"));
-    }
-
-    public List<CategoryDO> getAvailableCategories() {
-        //TODO: dominc, add logic
-        return Collections.singletonList(new CategoryDO("business"));
-    }
-
-    /**
      * External Api rest call
      *
      * @param lang
@@ -51,7 +32,6 @@ public class ExternalNewsService {
      * @throws RestClientException
      */
     public ExternalArticlesDO getExternalArticles(String lang, String category) {
-        //TODO: map lang to country
         String uri = generateUri(lang, category);
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<String> request = prepareRequest();

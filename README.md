@@ -4,7 +4,7 @@
 **Run the application on your local machine**
 
 You can simply run the NewsApp.jar with following command:
-```java -jar <any_folder>/news-app.jar```
+```java -jar news-app.jar```
 The application will be available at the following address:
 ```http://localhost:8080```
 
@@ -40,6 +40,10 @@ Configuration
 **Build the application for production**
 
 1. ```mvn clean install -Pproduction```
+
+**Build the application during development**
+
+1. ```mvn clean install -Pdevelopment``` or just use the "Spring boot run dev" Maven run configuration  if you use IntelliJ
 
 **Folders**
 

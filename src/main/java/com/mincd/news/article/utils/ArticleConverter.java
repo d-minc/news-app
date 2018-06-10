@@ -19,19 +19,14 @@ public class ArticleConverter {
 
     public ArticlesDO convertExternalArticle(final ExternalArticlesDO externalArticleDO, String lang, String category) {
         ArticlesDO articlesDO = new ArticlesDO();
-        articlesDO.setCountry(convertLanguageToCountry(lang));
+        articlesDO.setCountry(lang);
         articlesDO.setCategory(category);
         if (externalArticleDO.getArticles() != null && !externalArticleDO.getArticles().isEmpty()) {
             articlesDO.setArticles(externalArticleDO.getArticles().stream()
-                    .map(a -> createArticleDO(a))
+                    .map(this::createArticleDO)
                     .collect(Collectors.toSet()));
         }
         return articlesDO;
-    }
-
-    private String convertLanguageToCountry(String lang) {
-        //TODO: dominc, convert it
-        return lang;
     }
 
     private ArticleDO createArticleDO(ExternalArticleDO externalArticleDO) {

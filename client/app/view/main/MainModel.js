@@ -8,6 +8,15 @@ Ext.define('News.view.main.MainModel', {
 
     data: {
         name: I18n.get('app.name')
-    }
+    },
 
+
+
+});
+
+Ext.onReady(function () {
+    Ext.define("Ext.locale.pl.view.AbstractView", {
+        override: "Ext.view.AbstractView",
+        loadingText: I18n.get('app.loading')
+    });
 });
